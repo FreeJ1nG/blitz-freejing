@@ -23,6 +23,8 @@ model User {
 
   tokens   Token[]
   sessions Session[]
+
+  meetups Meetup[]
 }
 
 model Session {
@@ -55,6 +57,13 @@ model Token {
   userId Int
 
   @@unique([hashedToken, type])
+}
+
+model Meetup {
+  id           Int      @id @default(autoincrement())
+  date         DateTime
+  subject      String
+  participants User[]
 }
 
 // NOTE: It's highly recommended to use an enum for the token type
